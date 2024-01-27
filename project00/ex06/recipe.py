@@ -71,3 +71,21 @@ def delete_cook(name_of_food):
         print(f"{RED}{BOL}We don`t have a such recipe!{RES}")
 
 # delete_cook(name_of_food)
+
+# --------------------------------------------------------------------------------
+#function that add a recipe from user input.
+        
+key_name = input(f"{BLU}{BOL}Enter your own name of food for adding: {RES}")
+ingredients_name = list(map(str, (input(f"{BLU}{BOL}Enter all ingredients: {RES}").lower().split())))
+meal_name = input(f"{BLU}{BOL}Enter type of meal: {RES}")
+
+try:
+    prep_time = int(input(f"{BLU}{BOL}Enter preperation time: {RES}"))
+except ValueError:
+    print(f"{RED}{BOL}Enter number!{RES}")
+    prep_time = int(input(f"{BLU}{BOL}Enter preperation time: {RES}"))
+
+def add_recipe(key_name, ingredients_name, meal_name, prep_time):
+    cookboock.update({key_name.lower(): {"ingredients": ingredients_name, "meal": meal_name.lower(), "prep_time": prep_time}})
+
+add_recipe(key_name, ingredients_name, meal_name, prep_time)
