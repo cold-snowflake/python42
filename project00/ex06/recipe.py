@@ -44,7 +44,7 @@ def print_all_name_of_recipe(recipe_dic):
 # --------------------------------------------------------------------------------
 #function that takes a recipe name and print its details
 
-name_of_recipe = input(f"{CYA}{BOL}Enter name of food:{RES} ")
+# name_of_recipe = input(f"{CYA}{BOL}Enter name of food:{RES} ")
 
 def print_recipe_details(name_of_recipe):
     try:
@@ -60,7 +60,7 @@ def print_recipe_details(name_of_recipe):
 # --------------------------------------------------------------------------------
 #function that takes a recipe name and delete it.
 
-name_of_food = input(f"{BLU}{BOL}Enter name of food for deletion: {RES}")
+# name_of_food = input(f"{BLU}{BOL}Enter name of food for deletion: {RES}")
 
 def delete_cook(name_of_food):
     val = cookboock.get(name_of_food.lower())
@@ -75,17 +75,76 @@ def delete_cook(name_of_food):
 # --------------------------------------------------------------------------------
 #function that add a recipe from user input.
         
-key_name = input(f"{BLU}{BOL}Enter your own name of food for adding: {RES}")
-ingredients_name = list(map(str, (input(f"{BLU}{BOL}Enter all ingredients: {RES}").lower().split())))
-meal_name = input(f"{BLU}{BOL}Enter type of meal: {RES}")
+# key_name = input(f"{BLU}{BOL}Enter your own name of food for adding: {RES}")
+# ingredients_name = list(map(str, (input(f"{BLU}{BOL}Enter all ingredients: {RES}").lower().split())))
+# meal_name = input(f"{BLU}{BOL}Enter type of meal: {RES}")
 
-try:
-    prep_time = int(input(f"{BLU}{BOL}Enter preperation time: {RES}"))
-except ValueError:
-    print(f"{RED}{BOL}Enter number!{RES}")
-    prep_time = int(input(f"{BLU}{BOL}Enter preperation time: {RES}"))
+# try:
+#     prep_time = int(input(f"{BLU}{BOL}Enter preperation time: {RES}"))
+# except ValueError:
+#     print(f"{RED}{BOL}Enter number!{RES}")
+#     prep_time = int(input(f"{BLU}{BOL}Enter preperation time: {RES}"))
 
 def add_recipe(key_name, ingredients_name, meal_name, prep_time):
     cookboock.update({key_name.lower(): {"ingredients": ingredients_name, "meal": meal_name.lower(), "prep_time": prep_time}})
 
-add_recipe(key_name, ingredients_name, meal_name, prep_time)
+# add_recipe(key_name, ingredients_name, meal_name, prep_time)
+
+# --------------------------------------------------------------------------------
+#command line executable
+
+print(f"""{MAG}Welcome to the Python Cookbook !
+      
+                List of available option:
+      
+                1: Add a recipe
+                2: Delete a recipe
+                3: Print a recipe
+                4: Print the cookbook
+                5: Quit
+      
+                Please select an option:{RES}""")
+
+number = input()
+
+
+def main(number):
+
+        if number == "1":
+
+            key_name = input(f"{BLU}{BOL}Enter your own name of food for adding: {RES}")
+            ingredients_name = list(map(str, (input(f"{BLU}{BOL}Enter all ingredients: {RES}").lower().split())))
+            meal_name = input(f"{BLU}{BOL}Enter type of meal: {RES}")
+
+            try:
+                prep_time = int(input(f"{BLU}{BOL}Enter preperation time: {RES}"))
+            except ValueError:
+                print(f"{RED}{BOL}Enter number!{RES}")
+                prep_time = int(input(f"{BLU}{BOL}Enter preperation time: {RES}"))
+
+            add_recipe(key_name, ingredients_name, meal_name, prep_time)
+
+        elif number == "2":
+
+            name_of_food = input(f"{BLU}{BOL}Enter name of food for deletion: {RES}")
+            delete_cook(name_of_food)
+
+        elif number == "3":
+
+            name_of_recipe = input(f"{CYA}{BOL}Enter name of food:{RES} ")
+            print_recipe_details(name_of_recipe)
+
+        elif number == "4":
+
+            print_all_name_of_recipe(cookboock)
+
+        elif number == "5":
+
+            print(f"{YEL}Cookbook closed. Goodbye!{RES}")
+        else:
+            print(f"{RED}We don`t have a such options!{RES}")
+        
+
+
+
+main(number)
